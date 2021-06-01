@@ -27,6 +27,7 @@ export class SocialComponent implements OnInit {
       data => {
         this.user = data;
         console.log(data)
+        this.router.navigateByUrl("/home");
       }
     );
   }
@@ -36,6 +37,7 @@ export class SocialComponent implements OnInit {
       data => {
         this.user = data;
         console.log(data)
+        this.router.navigateByUrl("/home");
       }
     );
   }

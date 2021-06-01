@@ -15,11 +15,19 @@ export class SocialComponent implements OnInit {
   ngOnInit(): void {
   }
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
+      data => {
+        console.log(data)
+      }
+    );
   }
 
   signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(
+      data => {
+        console.log(data)
+      }
+    );
   }
 
 

@@ -8,11 +8,13 @@ import { ProfileComponent } from './componants/profile/profile.component';
 import { SocialComponent } from './componants/social/social.component';
 import {RouterModule, Routes} from "@angular/router";
 const routes: Routes = [
+  {path: 'students', component: StudentsComponent},
   {path : '' , component: HomeComponent},
   {path: 'login', component: SocialComponent},
   {path: 'home', component: HomeComponent},
   {path: 'profile', component: ProfileComponent},
   {path: '**', redirectTo: '/home'}
+
 ]
 
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
@@ -21,6 +23,7 @@ import {
   FacebookLoginProvider
 } from 'angularx-social-login';
 import {HttpClientModule} from "@angular/common/http";
+import { StudentsComponent } from './componants/students/students.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderComponent,
     HomeComponent,
     ProfileComponent,
-    SocialComponent
+    SocialComponent,
+    StudentsComponent
   ],
     imports: [
         BrowserModule,

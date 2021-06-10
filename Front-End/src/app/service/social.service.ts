@@ -16,6 +16,8 @@ export class SocialService {
     return this.http.post(`${this.baseUrl}google`, {token}).pipe(
       map(
         response => {
+          // @ts-ignore
+          sessionStorage.setItem('token','Bearer ' + response.token);
           return response;
         }
       )
@@ -26,6 +28,8 @@ export class SocialService {
     return this.http.post(`${this.baseUrl}facebook`, {token}).pipe(
       map(
         response => {
+          // @ts-ignore
+          sessionStorage.setItem('token','Bearer ' +response.token);
           return response;
         }
       )

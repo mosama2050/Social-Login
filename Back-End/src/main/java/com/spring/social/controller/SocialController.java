@@ -43,6 +43,9 @@ public class SocialController {
     @Value("${mySecret.password}")
     private String password;
 
+
+    private String email;
+
     private UserService userService;
 
     private RoleService roleService;
@@ -91,11 +94,28 @@ public class SocialController {
 
     //http://localhost:8080/social/facebook
     @PostMapping("/facebook")
-    public ResponseEntity<?> loginWithFacebook(@RequestBody TokenDto tokenDto){
+    public ResponseEntity<LoginResponse> loginWithFacebook(@RequestBody TokenDto tokenDto) throws Exception {
         Facebook facebook = new FacebookTemplate(tokenDto.getToken());
         String [] data = {"email","name","picture","work"};
-        User user = facebook.fetchObject("me",User.class,data);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+       org.springframework.social.facebook.api.User user =
+               facebook.fetchObject("me", org.springframework.social.facebook.api.User.class,data);
+
+        email = user.getEmail();
+        User userFace = new User();
+        if(userService.ifEmailExist(email)){
+            userFace = userService.getUserByMail(email);
+            System.out.println("Email Is Exist");
+        } else {
+            userFace = createUser(email);
+            System.out.println("Email Not Exist");
+        }
+        ///////////////////////////
+        JwtLogin jwtLogin = new JwtLogin();
+        jwtLogin.setEmail(user.getEmail());
+        jwtLogin.setPassword(password);
+        ///////////////////////////
+
+        return new ResponseEntity<LoginResponse>(tokenService.login(jwtLogin), HttpStatus.OK);
     }
 
 

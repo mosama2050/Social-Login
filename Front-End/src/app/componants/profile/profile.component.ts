@@ -8,13 +8,13 @@ import {SocialAuthService, SocialUser} from "angularx-social-login";
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private authService: SocialAuthService) { }
+  constructor(private auth: SocialAuthService) { }
   // @ts-ignore
   user: SocialUser;
   // @ts-ignore
   isLogin: boolean; // false
   ngOnInit(): void {
-    this.authService.authState.subscribe(
+    this.auth.authState.subscribe(
       data => {
         this.isLogin = (data != null);
         this.user = data;

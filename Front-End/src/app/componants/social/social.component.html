@@ -5,7 +5,7 @@
 <button *ngIf="isLogin" type="button" class="btn btn-danger soc" (click)="signOut()">SignOut</button>
 
 <div  class="soc " *ngIf="isLogin" >
-<img src="{{ user.photoUrl }}">
+  <img src="{{user.photoUrl}}">
 <div>
   <h4>{{ user.name }}</h4>
   <p>{{ user.email }}</p>
